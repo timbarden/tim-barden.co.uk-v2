@@ -23,7 +23,7 @@ function generate() {
 		originalSize: number;
 		size: number;
 		opacity: number;
-		blnOpacityUp: boolean;
+		opacityIncreasing: boolean;
 		color: string;
 		rotate: number;
 		rotateSpeed: number;
@@ -38,7 +38,7 @@ function generate() {
 			}
 			this.size = this.originalSize;
 			this.opacity = getRandomInt(10) / 10;
-			this.blnOpacityUp = Math.random() >= 0.5;
+			this.opacityIncreasing = Math.random() >= 0.5;
 			this.color = randomColor();
 			this.rotate = getRandomInt(360);
 			this.rotateSpeed = this.multiplier;
@@ -46,10 +46,10 @@ function generate() {
 
 		draw() {
 			if (this.opacity < 0.1) {
-				this.blnOpacityUp = true;
+				this.opacityIncreasing = true;
 			}
 			if (this.opacity > 0.65) {
-				this.blnOpacityUp = false;
+				this.opacityIncreasing = false;
 			}
 			ctx.fillStyle = 'rgba(' + this.color + ', ' + this.opacity + ')';
 			ctx.translate(cX / 2, cY / 2);
@@ -59,7 +59,7 @@ function generate() {
 		}
 
 		update() {
-			if (this.blnOpacityUp) {
+			if (this.opacityIncreasing) {
 				this.opacity += 0.01 * options.opacityFlashSpeed;
 			} else {
 				this.opacity -= 0.01 * options.opacityFlashSpeed;
