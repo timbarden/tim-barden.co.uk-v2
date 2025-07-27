@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router';
-import AnimatedBackground from './components/AnimatedBackground.vue';
+import SiteBackground from './components/SiteBackground.vue';
 </script>
 
 <template>
-	<AnimatedBackground />
+	<SiteBackground />
 	<section>
 		<header>
 			<img src="https://github.com/timbarden.png?size=400" alt="" />
@@ -21,7 +21,6 @@ import AnimatedBackground from './components/AnimatedBackground.vue';
 
 <style scoped>
 section {
-	background: rgba(255, 255, 255, 0.1);
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;

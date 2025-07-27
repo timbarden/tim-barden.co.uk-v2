@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
 
-function canvasAnimation() {
-	const intMaxSize = 25;
-	const intQty = 2500;
-	const intOpacitySpeed = 1;
-	const spinSpeed = 0.4; // between 0 and 1
+function generate() {
+	const options = {
+		animate: true,
+		maxSize: 30,
+		opacityFlashSpeed: 1.5, // 0+
+		quantity: 2500,
+		spinSpeed: 0.4, // between 0 and 1
+	};
+
 	const c = document.querySelector('canvas');
 	const ctx = c ? c.getContext('2d') : null;
-
 	let cX: number;
 	let cY: number;
 	let arr: CanvasObject[] = [];
@@ -30,8 +33,8 @@ function canvasAnimation() {
 			this.y = y;
 			this.multiplier = this.x / (cX / 2);
 			this.originalSize = this.multiplier * 40;
-			if (this.originalSize > intMaxSize) {
-				this.originalSize = intMaxSize;
+			if (this.originalSize > options.maxSize) {
+				this.originalSize = options.maxSize;
 			}
 			this.size = this.originalSize;
 			this.opacity = getRandomInt(10) / 10;
@@ -57,16 +60,16 @@ function canvasAnimation() {
 
 		update() {
 			if (this.blnOpacityUp) {
-				this.opacity += 0.01 * intOpacitySpeed;
+				this.opacity += 0.01 * options.opacityFlashSpeed;
 			} else {
-				this.opacity -= 0.01 * intOpacitySpeed;
+				this.opacity -= 0.01 * options.opacityFlashSpeed;
 			}
 			this.rotate += this.rotateSpeed;
 			if (this.rotateSpeed < 0.01) {
 				this.rotateSpeed = 0.01;
 			}
-			if (this.rotateSpeed >= this.multiplier * spinSpeed) {
-				this.rotateSpeed = this.multiplier * spinSpeed;
+			if (this.rotateSpeed >= this.multiplier * options.spinSpeed) {
+				this.rotateSpeed = this.multiplier * options.spinSpeed;
 			}
 			this.draw();
 		}
@@ -89,14 +92,16 @@ function canvasAnimation() {
 	}
 	function init() {
 		arr = [];
-		for (let i = 0; i < intQty; i++) {
+		for (let i = 0; i < options.quantity; i++) {
 			arr.push(new CanvasObject(getRandomInt(cX), getRandomInt(cY)));
 		}
 	}
 	function animate() {
 		if (!ctx) return;
 
-		requestAnimationFrame(animate);
+		if (options.animate) {
+			requestAnimationFrame(animate);
+		}
 		ctx.clearRect(0, 0, cX, cY);
 		for (let i = 0; i < arr.length; i++) {
 			arr[i].update();
@@ -116,7 +121,7 @@ function canvasAnimation() {
 }
 
 onMounted(() => {
-	canvasAnimation();
+	generate();
 });
 </script>
 
