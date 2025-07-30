@@ -7,7 +7,7 @@ import SiteBackground from './components/SiteBackground.vue';
 	<SiteBackground />
 	<section>
 		<header>
-			<img src="https://github.com/timbarden.png?size=400" alt="" />
+			<img src="https://github.com/timbarden.png?size=200" alt="Avatar" />
 			<nav>
 				<RouterLink to="/">Home</RouterLink>
 				<RouterLink to="/contact">Contact</RouterLink>
@@ -26,6 +26,10 @@ section {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+}
+header,
+main {
+	width: 100%;
 }
 img {
 	width: 4.5em;

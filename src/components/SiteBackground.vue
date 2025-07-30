@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
 
+const prefersReducedMotion = window.matchMedia(`(prefers-reduced-motion: reduce)`) === true || window.matchMedia(`(prefers-reduced-motion: reduce)`).matches === true;
+
 function generate() {
 	const options = {
-		animate: true,
+		animate: (import.meta.env.VITE_ANIMATE_BG == 'true') && !prefersReducedMotion,
 		maxSize: 30,
 		opacityFlashSpeed: 1.5, // 0+
 		quantity: 2500,
