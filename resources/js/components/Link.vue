@@ -1,5 +1,6 @@
 <script setup>
 import { defineProps } from 'vue';
+import { Link } from '@inertiajs/vue3';
 
 const props = defineProps({
     url: {
@@ -16,13 +17,13 @@ const classes = "relative inline-block align-bottom after:absolute after:bottom-
 
 <template>
     <li class="mb-4">
-        <RouterLink
+        <Link
             v-if="props.url.startsWith('/')"
-            :to="props.url"
+            :href="props.url"
             :class="classes"
         >
             <span>{{ props.label }}</span>
-        </RouterLink>
+        </Link>
         <a 
             v-else
             :href="props.url" 

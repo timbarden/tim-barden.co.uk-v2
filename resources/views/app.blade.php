@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-        <meta charset="UTF-8" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans|Alfa+Slab+One" rel="stylesheet" />
-        <title>Laravel</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title inertia>{{ config('app.name', 'Laravel') }}</title>
+
+        <link rel="icon" href="/favicon.ico" sizes="any">
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans|Alfa+Slab+One" rel="stylesheet" />
+
+        @routes
+        @vite(['resources/js/app.ts', "resources/js/pages/{$page['component']}.vue"])
+        @inertiaHead
     </head>
     <body class="font-sans antialiased text-white">
-        <div id="app">
-            <app />
-        </div>
+        @inertia
     </body>
-    @vite(['resources/js/app.js'])
 </html>

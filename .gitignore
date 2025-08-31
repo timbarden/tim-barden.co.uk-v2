@@ -30,6 +30,4 @@ coverage
 
 *.tsbuildinfo
 
-test-results/
-playwright-report/
 vendor
