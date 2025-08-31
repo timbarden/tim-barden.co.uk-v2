@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Link } from '@inertiajs/vue3';
+import { RouterLink, RouterView } from 'vue-router';
 import SiteBackground from '@/components/SiteBackground.vue';
 </script>
 
@@ -13,12 +13,12 @@ import SiteBackground from '@/components/SiteBackground.vue';
 				class="rounded-full w-[25vw] h-[25vw] max-w-18 max-h-18 shrink-0 overflow-hidden bg-white border-2 border-gray-200 relative m-auto mb-4"
 			/>
 			<nav>
-				<Link href="/">Home</Link>
-				<Link href="/contact">Contact</Link>
+				<RouterLink to="/">Home</RouterLink>
+				<RouterLink to="/contact">Contact</RouterLink>
 			</nav>
 		</header>
 		<main>
-			<slot />
+			<RouterView />
 		</main>
 	</section>
 </template>
