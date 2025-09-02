@@ -10,7 +10,7 @@ const links = [
 </script>
 
 <template>
-	<ul class="uppercase tracking-[0.2em] mt-10">
+	<ul class="uppercase">
 		<Link 
 			v-for="link in links" 
 			:key="link.url" 

@@ -15,7 +15,7 @@ const classes = "relative inline-block align-bottom after:absolute after:bottom-
 </script>
 
 <template>
-    <li class="mb-4">
+    <li class="mx-2 my-6">
         <RouterLink
             v-if="props.url.startsWith('/')"
             :to="props.url"
