@@ -29,6 +29,7 @@ const variations = {
             v-if="props.url.startsWith('/')"
             :to="props.url"
             :class="[classes, variations[props.variation]]"
+            activeClass="after:scale-x-100"
         >
             <span>{{ props.label }}</span>
         </RouterLink>
