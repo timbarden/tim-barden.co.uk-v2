@@ -11,7 +11,7 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans|Alfa+Slab+One" rel="stylesheet" />
         <script src="https://www.google.com/recaptcha/api.js?render=6Ldu87srAAAAAC4YP94cg7C9B2T5bB1fUS_MqVDH"></script>
     </head>
-    <body class="font-sans antialiased text-white tracking-[0.2em]">
+    <body class="font-sans antialiased text-white tracking-[0.1em]">
         <div id="app">
             <app />
         </div>

@@ -1,5 +1,5 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router';
+<script setup>
+import { RouterView } from 'vue-router';
 import Link from '@/components/Link.vue';
 import SiteBackground from '@/components/SiteBackground.vue';
 </script>

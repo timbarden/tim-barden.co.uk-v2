@@ -9,9 +9,18 @@ const props = defineProps({
     label: {
         type: String,
         required: true
+    },
+    variation: {
+        type: String,
+        required: false,
+        default: "white"
     }
 });
-const classes = "relative inline-block align-bottom after:absolute after:bottom-[-0.5em] after:left-1 after:right-1 after:mx-auto after:h-1 after:max-w-[200px] after:opacity-80 after:scale-x-0 after:bg-white after:transition-transform after:duration-300 after:ease after:bg-gradient-to-r after:from-[#0e55e8] after:to-[#5e32cf] hover:after:scale-x-100";
+const classes = "relative inline-block align-bottom tracking-[0.2em] after:absolute after:bottom-[-0.5em] after:left-1 after:right-1 after:mx-auto after:h-1 after:max-w-[200px] after:opacity-80 after:scale-x-0 after:transition-transform after:duration-300 after:ease after:bg-gradient-to-r hover:after:scale-x-100";
+const variations = {
+    white: "after:bg-white",
+    gradient: "after:from-[#0e55e8] after:to-[#5e32cf]"
+};
 </script>
 
 <template>
@@ -19,7 +28,7 @@ const classes = "relative inline-block align-bottom after:absolute after:bottom-
         <RouterLink
             v-if="props.url.startsWith('/')"
             :to="props.url"
-            :class="classes"
+            :class="[classes, variations[props.variation]]"
         >
             <span>{{ props.label }}</span>
         </RouterLink>
@@ -27,7 +36,7 @@ const classes = "relative inline-block align-bottom after:absolute after:bottom-
             v-else
             :href="props.url" 
             target="_blank"
-            :class="classes"
+            :class="[classes, variations[props.variation]]"
         >
             <span>{{ props.label }}</span>
         </a>

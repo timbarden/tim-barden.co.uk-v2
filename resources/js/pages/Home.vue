@@ -16,6 +16,7 @@ const links = [
 			:key="link.url" 
 			:url="link.url" 
 			:label="link.label" 
+			variation="gradient"
 		/>
 	</ul>
 </template>
