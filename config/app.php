@@ -123,4 +123,6 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'google_recaptcha_secret' => env('VITE_RECAPTCHA_SECRET', ''),
+    'contact_form_email_to' => env('VITE_CONTACT_FORM_EMAIL_TO', ''),
 ];

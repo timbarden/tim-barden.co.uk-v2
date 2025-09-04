@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue';
+import axios from 'axios';
 
 const form = ref({
 	name: '',
@@ -10,6 +11,31 @@ const form = ref({
 const formResponse = ref('');
 
 const submitForm = () => {
+	grecaptcha.ready(function() {
+		grecaptcha.execute(import.meta.env.VITE_RECAPTCHA_KEY, {
+			action: 'contactFormSubmit'
+		}).then(function(token) {
+			axios.post('/contact/submit', {
+				name: form.value.name,
+				email: form.value.email,
+				body: form.value.body,
+				'g-recaptcha-response': token
+			})
+			.then((res) => {
+				formResponse.value = res.data.message;
+				if (res.status === 200) {
+					form.value.name = '';
+					form.value.email = '';
+					form.value.body = '';
+				} else {
+					console.error("Error:", res);
+				}
+			})
+			.catch((error) => {
+				console.error("Error:", error)
+			})
+		});
+	});
 };
 </script>
 
