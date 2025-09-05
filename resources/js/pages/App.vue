@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import { RouterView } from 'vue-router';
+
 import Link from '@/components/Link.vue';
 import SiteBackground from '@/components/SiteBackground.vue';
 
@@ -17,7 +18,7 @@ const handleMouseLeave = () => {
 <template>
 	<SiteBackground :animate="!isHovering" />
 	<section class="relative min-h-screen flex flex-col text-center">
-		<header class="flex items-center justify-between px-[5%] py-6 gap-6 uppercase relative before:absolute before:inset-0 before:opacity-30 before:bg-white before:ease before:bg-gradient-to-r before:from-[#0e55e8] before:to-[#5e32cf]">
+		<header class="flex items-center justify-between px-[5%] py-6 gap-6 uppercase relative before:absolute before:inset-0 before:opacity-30 before:bg-white before:ease before:bg-gradient-to-r before:from-[var(--color-primary)] before:to-[var(--color-secondary)]">
 			<img 
 				src="https://github.com/timbarden.png?size=200" 
 				alt="Avatar"

@@ -20,7 +20,7 @@ const emits = defineEmits('mouseEnter', 'mouseLeave');
 const classes = "relative inline-block align-bottom tracking-[0.2em] after:absolute after:bottom-[-0.5em] after:left-1 after:right-1 after:mx-auto after:h-1 after:max-w-[200px] after:opacity-80 after:scale-x-0 after:transition-transform after:duration-300 after:ease after:bg-gradient-to-r hover:after:scale-x-100";
 const variations = {
     white: "after:bg-white",
-    gradient: "after:from-[#0e55e8] after:to-[#5e32cf]"
+    gradient: "after:from-[var(--color-primary)] after:to-[var(--color-secondary)]"
 };
 </script>
 

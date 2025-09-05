@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted, ref } from 'vue';
+import { useCssVar } from '@vueuse/core';
 
 const props = defineProps({
 	animate: {
@@ -9,6 +10,9 @@ const props = defineProps({
 });
 
 const animateBackground = ref(true);
+
+const cssVarColorPrimary = useCssVar('--color-primary');
+const cssVarColorSecondary = useCssVar('--color-secondary');
 
 if (window.matchMedia(`(prefers-reduced-motion: reduce)`) === true || window.matchMedia(`(prefers-reduced-motion: reduce)`).matches === true){
 	animateBackground.value = false;
@@ -131,12 +135,12 @@ function generate() {
 			arr[i].update();
 		}
 	}
-	function randomIntFromInterval(min, max) {
-		return Math.floor(Math.random() * (max - min + 1) + min);
-	}
 	function randomColor() {
-		const r = () => (Math.random() * 256) >> 0;
-		return r() + ',' + randomIntFromInterval(40, 70) + ',' + 255;
+		const arr = [];
+		arr.push(cssVarColorPrimary.value.replace('#', '').match(/.{1,2}/g).map(x => parseInt(x, 16)).join(','));
+		arr.push(cssVarColorSecondary.value.replace('#', '').match(/.{1,2}/g).map(x => parseInt(x, 16)).join(','));
+
+		return arr[Math.floor(Math.random() * arr.length)];
 	}
 
 	setCanvas();
