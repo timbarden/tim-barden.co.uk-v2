@@ -41,8 +41,8 @@ const variations = {
             :href="props.url" 
             target="_blank"
             :class="[classes, variations[props.variation]]"
-            @mouseenter="emits('mouseEnter', props.label)"
-            @mouseleave="emits('mouseLeave', props.label)"
+            @mouseenter="emits('mouseEnter')"
+            @mouseleave="emits('mouseLeave')"
         >
             <span>{{ props.label }}</span>
         </a>
