@@ -4,10 +4,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Tim Barden</title>
-        <link rel="icon" href="/favicon.ico" sizes="any">
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+        <title>Tim Barden | Full Stack Developer</title>
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link href="https://fonts.googleapis.com/css?family=Open+Sans|Alfa+Slab+One" rel="stylesheet" />
         <script src="https://www.google.com/recaptcha/api.js?render=6Ldu87srAAAAAC4YP94cg7C9B2T5bB1fUS_MqVDH" async defer></script>
     </head>
