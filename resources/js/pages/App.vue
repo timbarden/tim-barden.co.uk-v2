@@ -1,11 +1,21 @@
 <script setup>
+import { ref } from 'vue';
 import { RouterView } from 'vue-router';
 import Link from '@/components/Link.vue';
 import SiteBackground from '@/components/SiteBackground.vue';
+
+const isHovering = ref(false);
+
+const handleMouseEnter = () => {
+    isHovering.value = true;
+};
+const handleMouseLeave = () => {
+    isHovering.value = false;
+};
 </script>
 
 <template>
-	<SiteBackground />
+	<SiteBackground :animate="!isHovering" />
 	<section class="relative min-h-screen flex flex-col text-center">
 		<header class="flex items-center justify-between px-[5%] py-6 gap-6 uppercase relative before:absolute before:inset-0 before:opacity-30 before:bg-white before:ease before:bg-gradient-to-r before:from-[#0e55e8] before:to-[#5e32cf]">
 			<img 
@@ -15,14 +25,28 @@ import SiteBackground from '@/components/SiteBackground.vue';
 			/>
 			<nav class="flex">
 				<ul class="flex gap-6">
-					<Link url="/" label="Home">Home</Link>
-					<Link url="/contact" label="Contact">Contact</Link>
+					<Link 
+						url="/" 
+						label="Home"
+						@mouseEnter="handleMouseEnter"
+						@mouseLeave="handleMouseLeave"
+					>
+						Home
+					</Link>
+					<Link 
+						url="/contact" 
+						label="Contact"
+						@mouseEnter="handleMouseEnter"
+						@mouseLeave="handleMouseLeave"
+					>
+						Contact
+					</Link>
 				</ul>
 			</nav>
 		</header>
 		<main class="w-[90%] max-w-[30em] mx-auto flex-1 flex flex-col align-center justify-center">
 			<Transition>
-				<RouterView />
+				<RouterView @hoverChange="isHovering = $event" />
 			</Transition>
 		</main>
 	</section>

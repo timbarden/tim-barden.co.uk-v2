@@ -1,5 +1,9 @@
 <script setup>
+import { ref, watch } from 'vue';
+
 import Link from '@/components/Link.vue';
+
+const emits = defineEmits(['hoverChange']);
 
 const links = [
     { url: 'https://github.com/timbarden', label: 'GitHub' },
@@ -7,6 +11,19 @@ const links = [
     { url: 'http://www.ethelbertsdiary.co.uk', label: "Ethelbert's Diary" },
     { url: '/contact', label: 'Contact' }
 ];
+
+const isHovering = ref(false);
+
+const handleMouseEnter = () => {
+    isHovering.value = true;
+};
+const handleMouseLeave = () => {
+    isHovering.value = false;
+};
+
+watch(isHovering, (newVal) => {
+	emits('hoverChange', newVal);
+});
 </script>
 
 <template>
@@ -17,6 +34,8 @@ const links = [
 			:url="link.url" 
 			:label="link.label" 
 			variation="gradient"
+			@mouseEnter="handleMouseEnter"
+			@mouseLeave="handleMouseLeave"
 		/>
 	</ul>
 </template>

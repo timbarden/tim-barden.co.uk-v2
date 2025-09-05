@@ -14,6 +14,9 @@ const props = defineProps({
         default: "white"
     }
 });
+
+const emits = defineEmits('mouseEnter', 'mouseLeave');
+
 const classes = "relative inline-block align-bottom tracking-[0.2em] after:absolute after:bottom-[-0.5em] after:left-1 after:right-1 after:mx-auto after:h-1 after:max-w-[200px] after:opacity-80 after:scale-x-0 after:transition-transform after:duration-300 after:ease after:bg-gradient-to-r hover:after:scale-x-100";
 const variations = {
     white: "after:bg-white",
@@ -28,6 +31,8 @@ const variations = {
             :to="props.url"
             :class="[classes, variations[props.variation]]"
             activeClass="after:scale-x-100"
+            @mouseenter="emits('mouseEnter')"
+            @mouseleave="emits('mouseLeave')"
         >
             <span>{{ props.label }}</span>
         </RouterLink>
@@ -36,6 +41,8 @@ const variations = {
             :href="props.url" 
             target="_blank"
             :class="[classes, variations[props.variation]]"
+            @mouseenter="emits('mouseEnter', props.label)"
+            @mouseleave="emits('mouseLeave', props.label)"
         >
             <span>{{ props.label }}</span>
         </a>

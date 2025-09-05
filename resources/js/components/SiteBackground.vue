@@ -1,36 +1,41 @@
-<script setup lang="ts">
-import { onMounted } from 'vue';
+<script setup>
+import { onMounted, ref } from 'vue';
 
-const prefersReducedMotion = window.matchMedia(`(prefers-reduced-motion: reduce)`) === true || window.matchMedia(`(prefers-reduced-motion: reduce)`).matches === true;
+const props = defineProps({
+	animate: {
+		type: Boolean,
+		default: true
+	}
+});
+
+const animateBackground = ref(true);
+
+if (window.matchMedia(`(prefers-reduced-motion: reduce)`) === true || window.matchMedia(`(prefers-reduced-motion: reduce)`).matches === true){
+	animateBackground.value = false;
+}
 
 function generate() {
 	const options = {
-		animate: (import.meta.env.VITE_ANIMATE_BG == 'true') && !prefersReducedMotion,
+		animate: animateBackground.value,
 		maxSize: 30,
 		opacityFlashSpeed: 1.5, // 0+
 		quantity: 2500,
 		spinSpeed: 0.4, // between 0 and 1
 	};
 
-	const c = document.querySelector('canvas');
-	const ctx = c ? c.getContext('2d') : null;
-	let cX: number;
-	let cY: number;
-	let arr: CanvasObject[] = [];
-
 	class CanvasObject {
-		x: number;
-		y: number;
-		multiplier: number;
-		originalSize: number;
-		size: number;
-		opacity: number;
-		opacityIncreasing: boolean;
-		color: string;
-		rotate: number;
-		rotateSpeed: number;
+		x = 0;
+		y = 0;
+		multiplier = 0;
+		originalSize = 0;
+		size = 0;
+		opacity = 0;
+		opacityIncreasing = false;
+		color = '';
+		rotate = 0;
+		rotateSpeed = 0;
 
-		constructor(x: number, y: number) {
+		constructor(x, y) {
 			this.x = x;
 			this.y = y;
 			this.multiplier = this.x / (cX / 2);
@@ -61,21 +66,38 @@ function generate() {
 		}
 
 		update() {
-			if (this.opacityIncreasing) {
-				this.opacity += 0.01 * options.opacityFlashSpeed;
-			} else {
-				this.opacity -= 0.01 * options.opacityFlashSpeed;
-			}
-			this.rotate += this.rotateSpeed;
-			if (this.rotateSpeed < 0.01) {
-				this.rotateSpeed = 0.01;
-			}
+			this.opacityIncreasing ? (this.opacity+=0.01 * options.opacityFlashSpeed) : (this.opacity-=0.01 * options.opacityFlashSpeed);
+			this.rotate+= this.rotateSpeed;
 			if (this.rotateSpeed >= this.multiplier * options.spinSpeed) {
 				this.rotateSpeed = this.multiplier * options.spinSpeed;
 			}
+
+			if (props.animate) {
+				if (this.rotateSpeed < 0.1) {
+					this.rotateSpeed = 0.1;
+				}
+				if (this.rotateSpeed >= this.multiplier * options.spinSpeed + 0.1) {
+					this.rotateSpeed = this.multiplier * options.spinSpeed + 0.1;
+				} else {
+					this.rotateSpeed = this.rotateSpeed * 1.07;
+				}
+			} else {
+				if (this.rotateSpeed <= 0) {
+					this.rotateSpeed = 0;
+				} else {
+					this.rotateSpeed = this.rotateSpeed * 0.93;
+				}
+			}
+
 			this.draw();
 		}
 	}
+
+	const c = document.querySelector('canvas');
+	const ctx = c ? c.getContext('2d') : null;
+	let cX = 0;
+	let cY = 0;
+	let arr = new CanvasObject();
 
 	function setCanvas() {
 		if (!c) return;
@@ -89,7 +111,7 @@ function generate() {
 		cX = c.width;
 		cY = c.height;
 	}
-	function getRandomInt(max: number) {
+	function getRandomInt(max) {
 		return Math.floor(Math.random() * Math.floor(max));
 	}
 	function init() {
@@ -109,7 +131,7 @@ function generate() {
 			arr[i].update();
 		}
 	}
-	function randomIntFromInterval(min: number, max: number) {
+	function randomIntFromInterval(min, max) {
 		return Math.floor(Math.random() * (max - min + 1) + min);
 	}
 	function randomColor() {
@@ -128,5 +150,5 @@ onMounted(() => {
 </script>
 
 <template>
-	<canvas class="fixed top-[50%] left-[50%] min-w-full min-h-full translate-x-[-50%] translate-y-[-50%] bg-black"></canvas>
+	<canvas class="fixed top-1/2 left-1/2 min-w-full min-h-full translate-[-50%] bg-black"></canvas>
 </template>
