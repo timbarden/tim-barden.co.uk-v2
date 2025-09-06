@@ -24,7 +24,7 @@ function generate() {
 		maxSize: 30,
 		opacityFlashSpeed: 1.5, // 0+
 		quantity: 2500,
-		spinSpeed: 0.4, // between 0 and 1
+		spinSpeed: 0.2 // between 0 and 1
 	};
 
 	class CanvasObject {
@@ -77,13 +77,15 @@ function generate() {
 			}
 
 			if (props.animate) {
-				if (this.rotateSpeed < 0.1) {
-					this.rotateSpeed = 0.1;
-				}
-				if (this.rotateSpeed >= this.multiplier * options.spinSpeed + 0.1) {
-					this.rotateSpeed = this.multiplier * options.spinSpeed + 0.1;
-				} else {
-					this.rotateSpeed = this.rotateSpeed * 1.07;
+				if (options.spinSpeed > 0) {
+					if (this.rotateSpeed < 0.1) {
+						this.rotateSpeed = 0.1;
+					}
+					if (this.rotateSpeed >= this.multiplier * options.spinSpeed + 0.01) {
+						this.rotateSpeed = this.multiplier * options.spinSpeed + 0.01;
+					} else {
+						this.rotateSpeed = this.rotateSpeed * 1.07;
+					}
 				}
 			} else {
 				if (this.rotateSpeed <= 0) {
