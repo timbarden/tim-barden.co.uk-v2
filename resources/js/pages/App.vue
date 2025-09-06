@@ -4,8 +4,13 @@ import { RouterView } from 'vue-router';
 
 import Link from '@/components/Link.vue';
 import SiteBackground from '@/components/SiteBackground.vue';
+import AnimatedText from '@/components/AnimatedText.vue';
 
 const isHovering = ref(false);
+const animatedText = ref([
+	'Tim Barden',
+	'Full Stack Developer',
+]);
 
 const handleMouseEnter = () => {
     isHovering.value = true;
@@ -19,11 +24,16 @@ const handleMouseLeave = () => {
 	<SiteBackground :animate="!isHovering" />
 	<section class="relative min-h-screen flex flex-col text-center">
 		<header class="flex items-center justify-between px-[5%] py-6 gap-6 uppercase relative before:absolute before:inset-0 before:opacity-30 before:bg-white before:ease before:bg-gradient-to-r before:from-[var(--color-primary)] before:to-[var(--color-secondary)]">
-			<img 
-				src="https://github.com/timbarden.png?size=200" 
-				alt="Avatar"
-				class="rounded-full w-[25vw] h-[25vw] max-w-14 max-h-14 shrink-0 overflow-hidden bg-white border-2 border-gray-200 relative"
-			/>
+			<div class="flex items-center gap-4">
+				<img 
+					src="https://github.com/timbarden.png?size=200" 
+					alt="Avatar"
+					class="rounded-full w-[25vw] h-[25vw] max-w-14 max-h-14 shrink-0 overflow-hidden bg-white border-2 border-gray-200 relative"
+				/>
+				<div class="flex flex-col text-left tracking-[0.2em]">
+					<AnimatedText :text="animatedText" />
+				</div>
+			</div>
 			<nav class="flex">
 				<ul class="flex gap-6">
 					<Link 
