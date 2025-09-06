@@ -1,4 +1,6 @@
 <script setup>
+import { useVModel } from '@vueuse/core';
+
 const props = defineProps({
     modelValue: {
         type: [String, Number],
@@ -30,6 +32,9 @@ const props = defineProps({
     }
 });
 
+const emit = defineEmits(['update:modelValue']);
+const modelValue = useVModel(props, 'modelValue', emit);
+
 const classes = "border-2 border-gray-800 px-3 py-2 outline-none focus:[border-image:linear-gradient(to_top_right,var(--color-primary),var(--color-secondary))_1]";
 </script>
 
@@ -39,7 +44,7 @@ const classes = "border-2 border-gray-800 px-3 py-2 outline-none focus:[border-i
     </label>
     <textarea 
         v-if="type === 'text' && props.multiline > 1" 
-        :v-model="modelValue" 
+        v-model="modelValue"
         :id="props.id" 
         :name="props.name" 
         :required="props.required" 
@@ -48,7 +53,7 @@ const classes = "border-2 border-gray-800 px-3 py-2 outline-none focus:[border-i
     ></textarea>
     <input
         v-else 
-        :v-model="modelValue"
+        v-model="modelValue"
         :type="props.type" 
         :id="props.id" 
         :name="props.name" 

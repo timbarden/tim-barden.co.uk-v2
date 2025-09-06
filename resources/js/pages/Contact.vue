@@ -48,7 +48,7 @@ const submitForm = () => {
 			class="flex flex-col space-y-4 text-left w-full">
 			<div class="flex flex-col">
 				<Input 
-					modelValue="form.name" 
+					v-model="form.name" 
 					type="text" 
 					id="name" 
 					name="name" 
@@ -59,7 +59,7 @@ const submitForm = () => {
 
 			<div class="flex flex-col">
 				<Input 
-					modelValue="form.email" 
+					v-model="form.email" 
 					type="email" 
 					id="email" 
 					name="email" 
@@ -70,7 +70,7 @@ const submitForm = () => {
 
 			<div class="flex flex-col">
 				<Input 
-					modelValue="form.body" 
+					v-model="form.body" 
 					id="body" 
 					name="body" 
 					required 
