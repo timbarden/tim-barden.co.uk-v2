@@ -1,4 +1,5 @@
 <script setup>
+import { computed } from 'vue';
 import { useVModel } from '@vueuse/core';
 
 const props = defineProps({
@@ -22,6 +23,10 @@ const props = defineProps({
 		type: Boolean,
 		default: false
 	},
+	autocomplete: {
+		type: String,
+		default: 'off'
+	},
 	multiline: {
 		type: Number,
 		default: 1
@@ -35,7 +40,7 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue']);
 const modelValue = useVModel(props, 'modelValue', emit);
 
-const classes = "border-2 border-gray-800 px-3 py-2 outline-none focus:[border-image:linear-gradient(to_top_right,var(--color-primary),var(--color-secondary))_1]";
+const classes = "border-2 border-gray-800 px-3 py-2 outline-none invalid:focus:[border-image:linear-gradient(to_top_right,var(--color-primary),var(--color-secondary))_1] valid:border-white";
 </script>
 
 <template>
@@ -51,6 +56,7 @@ const classes = "border-2 border-gray-800 px-3 py-2 outline-none focus:[border-i
 		v-model="modelValue" 
 		:name="props.name" 
 		:required="props.required" 
+		:autocomplete="props.autocomplete"
 		:rows="props.multiline" 
 		:class="classes"
 	/>
@@ -61,6 +67,7 @@ const classes = "border-2 border-gray-800 px-3 py-2 outline-none focus:[border-i
 		:type="props.type" 
 		:name="props.name" 
 		:required="props.required" 
+		:autocomplete="props.autocomplete"
 		:class="classes"
 	>
 </template>

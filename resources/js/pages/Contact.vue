@@ -58,6 +58,7 @@ const submitForm = () => {
 					type="text" 
 					name="name" 
 					label="Name"
+					autocomplete="name"
 					required
 				/>
 			</div>
@@ -69,6 +70,7 @@ const submitForm = () => {
 					type="email" 
 					name="email" 
 					label="Email"
+					autocomplete="email"
 					required
 				/>
 			</div>
@@ -86,7 +88,7 @@ const submitForm = () => {
 
 			<button
 				type="submit"
-				class="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] text-white py-2 px-4 uppercase tracking-[0.2em]"
+				class="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] text-white py-2 px-4 uppercase tracking-[0.2em] cursor-pointer before:content-[''] before:absolute before:inset-0 before:bg-black before:opacity-0 before:transition-opacity hover:before:opacity-15 relative overflow-hidden"
 			>
 				Send!
 			</button>
