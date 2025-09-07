@@ -23,7 +23,7 @@ const handleMouseLeave = () => {
 <template>
 	<SiteBackground :animate="!isHovering" />
 	<section class="relative min-h-screen flex flex-col text-center">
-		<header class="flex items-center justify-between px-[5%] py-6 gap-6 uppercase relative before:absolute before:inset-0 before:opacity-30 before:bg-white before:ease before:bg-gradient-to-r before:from-[var(--color-primary)] before:to-[var(--color-secondary)]">
+		<header class="flex items-center justify-between px-[5%] py-6 gap-6 uppercase relative before:absolute before:inset-0 before:opacity-22 before:bg-white before:ease before:bg-gradient-to-r before:from-[var(--color-primary)] before:to-[var(--color-secondary)] backdrop-blur-sm">
 			<div class="flex items-center gap-4">
 				<img 
 					src="https://github.com/timbarden.png?size=200" 
