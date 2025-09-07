@@ -1,19 +1,19 @@
-import prettier from 'eslint-config-prettier';
-import vue from 'eslint-plugin-vue';
+import pluginVue from 'eslint-plugin-vue';
 
-import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript';
-
-export default defineConfigWithVueTs(
-    vue.configs['flat/essential'],
-    vueTsConfigs.recommended,
+export default [
+    ...pluginVue.configs['flat/essential'], ...pluginVue.configs['flat/recommended'], 
     {
-        ignores: ['vendor', 'node_modules', 'public', 'bootstrap/ssr', 'tailwind.config.js', 'resources/js/components/ui/*'],
+        ignores: ['vendor', 'node_modules', 'public', 'tailwind.config.js'],
     },
     {
         rules: {
+            "vue/html-indent": ["error", ("tab")],
             'vue/multi-word-component-names': 'off',
-            '@typescript-eslint/no-explicit-any': 'off',
+            'vue/no-unused-vars': 'error',
+            "vue/script-indent": ["error", ("tab")],
         },
-    },
-    prettier,
-);
+        languageOptions: {
+            sourceType: 'module'
+        }
+    }
+]

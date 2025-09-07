@@ -13,10 +13,10 @@ const animatedText = ref([
 ]);
 
 const handleMouseEnter = () => {
-    isHovering.value = true;
+	isHovering.value = true;
 };
 const handleMouseLeave = () => {
-    isHovering.value = false;
+	isHovering.value = false;
 };
 </script>
 
@@ -29,7 +29,7 @@ const handleMouseLeave = () => {
 					src="https://github.com/timbarden.png?size=200" 
 					alt="Avatar"
 					class="rounded-full w-[25vw] h-[25vw] max-w-14 max-h-14 shrink-0 overflow-hidden bg-white border-2 border-gray-200 relative"
-				/>
+				>
 				<div class="flex flex-col text-left tracking-[0.2em]">
 					<AnimatedText :text="animatedText" />
 				</div>
@@ -39,16 +39,16 @@ const handleMouseLeave = () => {
 					<Link 
 						url="/" 
 						label="Home"
-						@mouseEnter="handleMouseEnter"
-						@mouseLeave="handleMouseLeave"
+						@mouse-enter="handleMouseEnter"
+						@mouse-leave="handleMouseLeave"
 					>
 						Home
 					</Link>
 					<Link 
 						url="/contact" 
 						label="Contact"
-						@mouseEnter="handleMouseEnter"
-						@mouseLeave="handleMouseLeave"
+						@mouse-enter="handleMouseEnter"
+						@mouse-leave="handleMouseLeave"
 					>
 						Contact
 					</Link>
@@ -57,7 +57,7 @@ const handleMouseLeave = () => {
 		</header>
 		<main class="w-[90%] max-w-[30em] mx-auto flex-1 flex flex-col align-center justify-center">
 			<Transition>
-				<RouterView @hoverChange="isHovering = $event" />
+				<RouterView @hover-change="isHovering = $event" />
 			</Transition>
 		</main>
 	</section>

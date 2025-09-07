@@ -156,5 +156,5 @@ onMounted(() => {
 </script>
 
 <template>
-	<canvas class="fixed top-1/2 left-1/2 min-w-full min-h-full translate-[-50%] bg-black"></canvas>
+	<canvas class="fixed top-1/2 left-1/2 min-w-full min-h-full translate-[-50%] bg-black" />
 </template>

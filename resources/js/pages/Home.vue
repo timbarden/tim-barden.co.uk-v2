@@ -6,19 +6,19 @@ import Link from '@/components/Link.vue';
 const emits = defineEmits(['hoverChange']);
 
 const links = [
-    { url: 'https://github.com/timbarden', label: 'GitHub' },
-    { url: 'https://codepen.io/timbarden', label: 'CodePen' },
-    { url: 'http://www.ethelbertsdiary.co.uk', label: "Ethelbert's Diary" },
-    { url: '/contact', label: 'Contact' }
+	{ url: 'https://github.com/timbarden', label: 'GitHub' },
+	{ url: 'https://codepen.io/timbarden', label: 'CodePen' },
+	{ url: 'http://www.ethelbertsdiary.co.uk', label: "Ethelbert's Diary" },
+	{ url: '/contact', label: 'Contact' }
 ];
 
 const isHovering = ref(false);
 
 const handleMouseEnter = () => {
-    isHovering.value = true;
+	isHovering.value = true;
 };
 const handleMouseLeave = () => {
-    isHovering.value = false;
+	isHovering.value = false;
 };
 
 watch(isHovering, (newVal) => {
@@ -34,8 +34,8 @@ watch(isHovering, (newVal) => {
 			:url="link.url" 
 			:label="link.label" 
 			variation="gradient"
-			@mouseEnter="handleMouseEnter"
-			@mouseLeave="handleMouseLeave"
+			@mouse-enter="handleMouseEnter"
+			@mouse-leave="handleMouseLeave"
 		/>
 	</ul>
 </template>

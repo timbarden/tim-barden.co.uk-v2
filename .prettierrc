@@ -15,5 +15,6 @@
                 "tabWidth": 2
             }
         }
-    ]
+    ],
+    "vueIndentScriptAndStyle": true
 }
