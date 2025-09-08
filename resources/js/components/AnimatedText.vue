@@ -1,5 +1,8 @@
 <script setup>
-import { computed, ref } from 'vue';
+import { onMounted } from "vue";
+
+import { gsap } from "gsap";
+import { SplitText } from "gsap/SplitText";
 
 const props = defineProps({
 	text: {
@@ -8,48 +11,37 @@ const props = defineProps({
 	}
 });
 
-const animatedText = ref(props.text[0]);
-const intCurrentTextIndex = ref(0);
-const active = ref(true);
-
-setInterval(() => {
-	active.value = false;
-	intCurrentTextIndex.value = (intCurrentTextIndex.value + 1) % props.text.length;
-	animatedText.value = props.text[intCurrentTextIndex.value];
-	setTimeout(() => {
-		active.value = true;
-	}, 1000);
-}, 7000);
-
-const computedAnimatedText = computed(() => {
-	let html = '';
-	animatedText.value.split('').forEach((letter, index) => {
-		letter === ' ' && (letter = '&nbsp;');
-		html += `<span style="transition-delay: ${0.1 * index}s;">${letter}</span>`;
+onMounted(() => {
+	let timeline = gsap.timeline({
+		repeat: -1,
 	});
-	return html;
+	props.text.forEach((line, index) => {
+		const split = SplitText.create(`.gsap_line-${index}`, { type: "chars" });
+
+		timeline.from(split.chars, {
+			duration: 0.05,
+			y: 1,
+			autoAlpha: 0,
+			stagger: 0.12,
+		}).to(`.gsap_line-${index}`, { 
+			opacity: 0,
+			y: -10,
+			duration: .15,
+			delay: 2.5,
+		})
+	});
 });
 </script>
 
 <template>
-	<p
-		:class="{ active }"
-		v-html="computedAnimatedText"
-	/>
+	<div class="grid grid-cols-1 grid-rows-1">
+		<p
+			v-for="(line, index) in props.text"
+			:id="index"
+			:key="index"
+			:class="`gsap_line-${index} row-span-full col-span-full`"
+		>
+			{{ line }}
+		</p>
+	</div>
 </template>
-
-<style scoped>
-	p :deep(span) {
-		display: inline-block;
-		vertical-align: bottom;
-		opacity: 0;
-		transform: scale(0.9);
-		transform-origin: 50% 100%;
-		transition: opacity 0s ease, transform 0.1s ease;
-		will-change: opacity, transform;
-	}
-	p.active :deep(span) {
-		opacity: 1;
-		transform: scale(1);
-	}
-</style>
