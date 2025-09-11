@@ -27,7 +27,7 @@ watch(isHovering, (newVal) => {
 </script>
 
 <template>
-	<ul class="uppercase">
+	<ul class="uppercase flex flex-col gap-6">
 		<Link 
 			v-for="link in links" 
 			:key="link.url" 

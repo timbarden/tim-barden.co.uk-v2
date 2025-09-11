@@ -25,25 +25,29 @@ const variations = {
 </script>
 
 <template>
-	<li class="mx-2 my-6">
+	<li>
 		<RouterLink
 			v-if="props.url.startsWith('/')"
 			:to="props.url"
+			:aria-label="`props.label`"
 			:class="[classes, variations[props.variation]]"
 			active-class="after:scale-x-100"
 			@mouseenter="emits('mouseEnter')"
 			@mouseleave="emits('mouseLeave')"
 		>
+			<slot />
 			<span>{{ props.label }}</span>
 		</RouterLink>
 		<a 
 			v-else
 			:href="props.url" 
 			target="_blank"
+			:aria-label="`${props.label} (opens in a new tab)`"
 			:class="[classes, variations[props.variation]]"
 			@mouseenter="emits('mouseEnter')"
 			@mouseleave="emits('mouseLeave')"
 		>
+			<slot />
 			<span>{{ props.label }}</span>
 		</a>
 	</li>
