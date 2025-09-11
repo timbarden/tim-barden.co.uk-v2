@@ -37,14 +37,14 @@ const handleMouseLeave = () => {
 				</div>
 			</div>
 			<nav class="flex absolute top-[calc(100%+1em)] right-[5%] md:relative md:inset-auto">
-				<ul class="flex gap-6 text-[0.8em] md:text-[1em]">
+				<ul class="flex gap-[2em] text-[0.8em] md:text-[1em]">
 					<Link 
 						url="/" 
 						:label="Home"
 						@mouse-enter="handleMouseEnter"
 						@mouse-leave="handleMouseLeave"
 					>
-						<House class="w-[1.5em] h-[1.5em]" />
+						<House class="w-[1.4em] h-[1.4em]" />
 					</Link>
 					<Link 
 						url="/contact" 
@@ -52,7 +52,7 @@ const handleMouseLeave = () => {
 						@mouse-enter="handleMouseEnter"
 						@mouse-leave="handleMouseLeave"
 					>
-						<Send class="w-[1.5em] h-[1.5em]" />
+						<Send class="w-[1.4em] h-[1.4em]" />
 					</Link>
 				</ul>
 			</nav>
